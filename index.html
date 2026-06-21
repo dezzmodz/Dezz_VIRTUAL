@@ -3,139 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOUTA TERBATAS</title>
-
+<title>AI Premium Access</title>
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,Arial,sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
 body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#0f172a,#1e293b);
-padding:20px;
-color:white;
+min-height:100vh;display:flex;justify-content:center;align-items:center;
+background:#0b1020;color:#fff;overflow:hidden;padding:20px;
 }
-
-.container{
-max-width:520px;
-width:100%;
-text-align:center;
+canvas{position:fixed;inset:0;z-index:0}
+.card{
+position:relative;z-index:2;width:100%;max-width:560px;
 background:rgba(255,255,255,.06);
-backdrop-filter:blur(10px);
-padding:40px 25px;
-border-radius:28px;
-box-shadow:0 20px 50px rgba(0,0,0,.35);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:28px;padding:36px;text-align:center;
+box-shadow:0 0 60px rgba(99,102,241,.25);
 }
-
 .badge{
-display:inline-block;
-padding:8px 14px;
-border-radius:999px;
-background:rgba(250,204,21,.15);
-border:1px solid rgba(250,204,21,.4);
-color:#facc15;
-font-size:14px;
-font-weight:700;
-margin-bottom:20px;
+display:inline-block;padding:8px 14px;border-radius:999px;
+background:rgba(250,204,21,.15);color:#facc15;
+border:1px solid rgba(250,204,21,.35);margin-bottom:18px;font-weight:700
 }
-
-h1{
-font-size:34px;
-line-height:1.2;
-margin-bottom:15px;
-}
-
-p{
-color:#cbd5e1;
-line-height:1.7;
-margin-bottom:28px;
-}
-
+h1{font-size:34px;margin-bottom:12px}
+p{color:#cbd5e1;line-height:1.7;margin-bottom:22px}
 .btn{
-display:block;
-width:100%;
-padding:18px;
-border-radius:18px;
-background:#facc15;
-color:#111827;
-font-size:20px;
-font-weight:800;
-text-decoration:none;
-transition:.25s;
-box-shadow:0 10px 30px rgba(250,204,21,.35);
+display:block;text-decoration:none;padding:18px;border-radius:18px;
+background:linear-gradient(90deg,#facc15,#f59e0b);
+color:#111;font-weight:800;font-size:20px;
+box-shadow:0 0 35px rgba(250,204,21,.4)
 }
+.note{margin-top:16px;font-weight:600}
 
-.btn:hover{
-transform:translateY(-3px) scale(1.02);
+#overlay{
+position:fixed;inset:0;background:rgba(0,0,0,.88);
+backdrop-filter:blur(10px);z-index:9999;
+display:flex;align-items:center;justify-content:center;
 }
-
-.note{
-margin-top:16px;
-font-size:13px;
-color:#94a3b8;
+.box{
+width:92%;max-width:420px;background:#111827;
+padding:28px;border-radius:24px;text-align:center
 }
-
-.note{
-margin-top:16px;
-font-size:15px;
-color:#e5e7eb;
-line-height:1.8;
-font-weight:600;
+.progress{
+height:10px;background:#222;border-radius:999px;
+overflow:hidden;margin:18px 0;
 }
-
+.bar{
+height:100%;width:0%;
+background:linear-gradient(90deg,#22c55e,#06b6d4);
+transition:.3s;
+}
+.join{
+display:block;margin:14px 0;padding:15px;border-radius:14px;
+background:#25D366;color:#fff;text-decoration:none;font-weight:bold
+}
+#enter{
+width:100%;padding:15px;border:none;border-radius:14px;
+font-weight:bold;background:#facc15;color:#111;
+opacity:.5
+}
+.active{opacity:1!important;cursor:pointer}
 </style>
 </head>
 <body>
 
-<div class="container">
+<canvas id="particles"></canvas>
 
-<div class="badge">
-⚠️ AKSES TERBATAS!!
-</div>
+<div id="overlay">
+  <div class="box">
+    <h2>🛡 AI Security Verification</h2>
+    <p>Verifikasi akses sebelum masuk.</p>
 
-<h1>
-Buka Konten & Daget setiap mingu & Modal link Dapat Cuan
-</h1>
-
-<p>
-Klik tombol di bawah untuk mendapatkan akses ke update terbaru, konten terbaru, dapatkan daget setiap minggu, + Mods Game + Mod app + Get key, Modal link dapat cuan, dan masih banyak lainya...
-</p>
-
-<a href="https://sub4unlock.co/vAp7Z" class="btn">
- 🛜 START
+    <a class="join" id="waBtn"
+href="https://whatsapp.com/channel/0029Vb7aIVe2UPBK5qaTPP1V"
+target="_blank">
+📢 WhatsApp Channel
 </a>
 
+<a class="join" id="ytBtn"
+href="https://www.youtube.com/@DezZXMods"
+target="_blank">
+▶️ YouTube Mods
+</a>
 
-<div class="note">
-<span id="views">👁 47,299 views</span>
+<a class="join" id="tgBtn"
+href="https://t.me/+nmDgMfjt-t9jYzA1"
+target="_blank">
+📡 Telegram Community
+</a>
+
+<a class="join" id="ttBtn"
+href="https://www.tiktok.com/@dezz_realmods"
+target="_blank">
+🎵 TikTok Official
+</a>
+
+<a class="join" id="sbBtn"
+href="https://sociabuzz.com/dezzreal"
+target="_blank">
+☕ Support Creator
+</a>
+
+<a class="join" id="botBtn"
+href="https://t.me/DezzV1bot?start=U1BFQ0lBTAeVIAAkFNbwMCAAM"
+target="_blank">
+🤖 Telegram Bot
+</a>
+
+    <div class="progress">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <div id="verify" style="display:none">
+      <label>
+        <input type="checkbox" id="check">
+        Saya sudah bergabung
+      </label>
+      <br><br>
+      <button id="enter" disabled>🚀 MASUK</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="badge">⚠️ AKSES TERBATAS!!</div>
+  <h1>Buka Konten & Daget setiap mingu & Modal link Dapat Cuan</h1>
+  <p>Klik tombol di bawah untuk mendapatkan akses ke update terbaru, konten terbaru, dapatkan daget setiap minggu, + Mods Game + Mod app + Get key, Modal link dapat cuan, dan masih banyak lainya...</p>
+  <a class="btn" href="https://sub4unlock.co/vAp7Z">🛜 START</a>
+  <div class="note"><span id="views">👁 0 views</span></div>
 </div>
 
 <script>
-let views = Math.floor(Math.random() * 9000000) + 100000;
+let joined=false;
+const bar=document.getElementById('bar');
 
-function randomViews() {
-    views += Math.floor(Math.random() * 100) + 1;
+document.getElementById('joinBtn').onclick=()=>{
+ joined=true;
+ let p=0;
+ const t=setInterval(()=>{
+   p+=5;
+   bar.style.width=p+'%';
+   if(p>=100){
+     clearInterval(t);
+     document.getElementById('verify').style.display='block';
+   }
+ },100);
+};
 
-    document.getElementById('views').innerHTML =
-        `👁 ${views.toLocaleString()} views`;
+const check=document.getElementById('check');
+const enter=document.getElementById('enter');
 
-    const nextUpdate =
-        Math.floor(Math.random() * 5000) + 1000;
+check.addEventListener('change',()=>{
+ if(joined && check.checked){
+   enter.disabled=false;
+   enter.classList.add('active');
+ }
+});
 
-    setTimeout(randomViews, nextUpdate);
+enter.onclick=()=>{
+ document.getElementById('overlay').style.display='none';
+};
+
+let views=Math.floor(Math.random()*9000000)+100000;
+function upd(){
+ views+=Math.floor(Math.random()*100)+1;
+ document.getElementById('views').innerHTML='👁 '+views.toLocaleString()+' views';
+ setTimeout(upd,Math.random()*5000+1000);
 }
+upd();
 
-randomViews();
-</script>
+const c=document.getElementById('particles');
+const ctx=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();addEventListener('resize',resize);
+const pts=[...Array(80)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5),vy:(Math.random()-.5)}));
+function anim(){
+ ctx.clearRect(0,0,c.width,c.height);
+ pts.forEach(p=>{
+  p.x+=p.vx;p.y+=p.vy;
+  if(p.x<0||p.x>c.width)p.vx*=-1;
+  if(p.y<0||p.y>c.height)p.vy*=-1;
+  ctx.beginPath();ctx.arc(p.x,p.y,2,0,7);ctx.fillStyle='white';ctx.fill();
+ });
+ requestAnimationFrame(anim);
+}
+anim();
+// batasan
+const enter = document.getElementById('enter');
 
-</div>
+let currentStep = 0;
+let lastStepTime = 0;
 
+const buttons = [
+'waBtn',
+'ytBtn',
+'tgBtn',
+'ttBtn',
+'sbBtn',
+'botBtn'
+];
+
+buttons.forEach((id, index) => {
+
+    const btn = document.getElementById(id);
+
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+
+        if (index !== currentStep) {
+            alert('⚠️ Selesaikan langkah sebelumnya dulu!');
+            return;
+        }
+
+        const now = Date.now();
+
+        if (currentStep > 0 && now - lastStepTime < 5000) {
+            alert('⏳ Tunggu 5 detik sebelum lanjut!');
+            return;
+        }
+
+        lastStepTime = now;
+
+        if (!btn.classList.contains('done')) {
+
+            btn.classList.add('done');
+            btn.innerHTML += ' ✅';
+
+            currentStep++;
+
+            if (currentStep === buttons.length) {
+                enter.disabled = false;
+                enter.classList.add('active');
+            }
+        }
+
+    });
+
+});
+<script>
 </body>
 </html>
