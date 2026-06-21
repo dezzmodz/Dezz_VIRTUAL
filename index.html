@@ -139,10 +139,10 @@ const links = {
 
 window.open(links[id], "_blank", "noopener,noreferrer");
 
-// refresh halaman ini setelah 1 detik
+// refresh halaman ini setelah 0,1 detik
 setTimeout(() => {
   location.reload();
-}, 1000);
+}, 100);
 
 }
 
@@ -164,7 +164,7 @@ return;
 
 const now = Date.now();
 
-if(current > 1 && now - lastClick < 15000){
+if(current > 1 && now - lastClick < 1000){
 alert("⏳ Tunggu 15 detik sebelum lanjut!");
 return;
 }
@@ -178,7 +178,7 @@ socialLinks[i - 1],
 
 step.style.pointerEvents = "none";
 
-let countdown = 15;
+let countdown = 1;
 
 step.innerHTML =
 `⏳ Tunggu ${countdown} detik`;
