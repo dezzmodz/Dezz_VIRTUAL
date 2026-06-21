@@ -4,87 +4,395 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WEBSITE | 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈</title><style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:#0f172a;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-padding:20px;
+  min-height:100vh;
+  padding:20px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:white;
+
+  background:
+  radial-gradient(circle at top left,#ff008855,transparent 30%),
+  radial-gradient(circle at top right,#00e5ff55,transparent 30%),
+  radial-gradient(circle at bottom,#7c3aed55,transparent 40%),
+  #070b14;
+
+  overflow-x:hidden;
 }
 
 .container{
-width:100%;
-max-width:500px;
-background:#1e293b;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 0 30px rgba(0,0,0,.4);
+  width:100%;
+  max-width:550px;
+
+  padding:25px;
+  border-radius:25px;
+
+  background:rgba(10,15,25,.85);
+
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+  0 0 25px rgba(0,229,255,.15),
+  0 0 50px rgba(255,0,136,.10);
+
+  animation:containerFloat 4s ease-in-out infinite;
+}
+
+@keyframes containerFloat{
+  0%,100%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-5px);
+  }
+}
+
+.profile{
+  display:flex;
+  justify-content:center;
+  margin-bottom:15px;
+}
+
+.profile img{
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+  object-fit:cover;
+
+  border:3px solid #00e5ff;
+
+  box-shadow:
+  0 0 20px #00e5ff,
+  0 0 40px #00e5ff55;
+
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  0%{
+    box-shadow:
+    0 0 15px #00e5ff,
+    0 0 30px #00e5ff55;
+  }
+
+  50%{
+    box-shadow:
+    0 0 30px #00e5ff,
+    0 0 60px #00e5ffaa;
+  }
+
+  100%{
+    box-shadow:
+    0 0 15px #00e5ff,
+    0 0 30px #00e5ff55;
+  }
+}
+
+.magic-title{
+  text-align:center;
+
+  font-size:34px;
+  font-weight:800;
+
+  margin-bottom:10px;
+
+  color:white;
+
+  text-shadow:
+  0 0 10px #00e5ff,
+  0 0 20px #ff0088;
+}
+
+.description{
+  text-align:center;
+
+  color:#b8c1d1;
+
+  line-height:1.7;
+
+  margin-bottom:20px;
+
+  font-size:14px;
 }
 
 h2{
-margin-bottom:10px;
+  text-align:center;
+  margin-bottom:10px;
+
+  color:#ffffff;
 }
 
 p{
-margin-bottom:20px;
-color:#cbd5e1;
+  color:#cbd5e1;
 }
 
 .step{
-background:#334155;
-padding:15px;
-margin:10px 0;
-border-radius:12px;
-cursor:pointer;
-transition:.2s;
-font-weight:bold;
+  margin:12px 0;
+  padding:15px;
+
+  border-radius:15px;
+
+  background:#111827;
+
+  border-left:4px solid #00e5ff;
+
+  cursor:pointer;
+
+  transition:.3s;
 }
 
 .step:hover{
-transform:translateY(-2px);
+  transform:translateX(8px);
+
+  box-shadow:
+  0 0 15px rgba(0,229,255,.25);
 }
 
 .step.done{
-background:#16a34a;
+  background:
+  linear-gradient(
+  135deg,
+  #16a34a,
+  #22c55e);
+
+  border-left:none;
 }
-#unlockMenu button{
-width:100%;
-padding:15px;
-margin-top:10px;
-border:none;
-border-radius:12px;
-background:#facc15;
-color:#111;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+
+.unlock-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+
+  margin-top:15px;
 }
-.unlock-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+
+.unlock-grid button{
+  padding:12px;
+
+  border:none;
+  border-radius:12px;
+
+  color:white;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff0088,
+  #00e5ff);
+
+  transition:.3s;
 }
-.unlock-grid button {
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
+
+.unlock-grid button:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 0 15px rgba(255,0,136,.5),
+  0 0 15px rgba(0,229,255,.5);
 }
+
 .note{
-margin-top:15px;
-font-size:14px;
-color:#94a3b8;
+  margin-top:15px;
+
+  text-align:center;
+
+  color:#94a3b8;
+
+  font-size:13px;
 }
-</style></head>
-<body><div class="container"><h2>🔓 Unlock Content</h2><p>
+
+/* scrollbar */
+
+::-webkit-scrollbar{
+  width:5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#00e5ff;
+  border-radius:10px;
+}
+
+/* overlay verifikasi */
+
+.progress-box{
+  margin-bottom:20px;
+  padding:15px;
+
+  background:rgba(255,255,255,.05);
+
+  border-radius:15px;
+
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.progress-title{
+  font-weight:bold;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.progress-bar{
+  width:100%;
+  height:12px;
+
+  border-radius:50px;
+
+  overflow:hidden;
+
+  background:#111827;
+}
+
+.progress-fill{
+  width:0%;
+  height:100%;
+
+  border-radius:50px;
+
+  transition:.5s;
+
+  background:linear-gradient(
+  90deg,
+  #00e5ff,
+  #a855f7);
+}
+
+.progress-text{
+  margin-top:10px;
+  text-align:center;
+  color:#cbd5e1;
+}
+
+/*OVERLAY WELELCOM*/
+#welcomeOverlay{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:9999;
+}
+
+.welcome-box{
+  width:90%;
+  max-width:400px;
+
+  text-align:center;
+
+  padding:30px;
+
+  border-radius:25px;
+
+  background:#111827;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+  0 0 25px rgba(0,229,255,.25);
+
+  animation:popup .4s ease;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.welcome-box h1{
+  margin-bottom:15px;
+}
+
+.welcome-box p{
+  color:#cbd5e1;
+  line-height:1.6;
+}
+
+.welcome-box button{
+  margin-top:20px;
+
+  border:none;
+
+  padding:14px 25px;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  color:white;
+  font-weight:bold;
+
+  background:
+  linear-gradient(
+  135deg,
+  #00e5ff,
+  #7c3aed);
+}
+
+</style>
+</head>
+<body>
+
+
+<div id="welcomeOverlay">
+  <div class="welcome-box">
+
+    <h1>👋 Welcome To 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈</h1>
+
+    <p>
+      🔒 Secure Access System<br><br>Untuk melindungi konten premium,<br>silakan selesaikan seluruh proses<br>verifikasi terlebih dahulu.
+      <br><br>
+      ⚡ Status : Waiting Verification
+    </p>
+
+    <button onclick="startWebsite()">
+      [ 🚀 Mulai Sekarang ]
+    </button>
+    <br><p>© 2026 - DezZ OFM<br>All Rights Reserved v.1.2</p>
+
+  </div>
+</div>
+
+<div class="container">
+
+<div class="profile">
+  <img src="https://files.catbox.moe/7n2m2x.jpg" alt="Profile">
+</div>
+
+<h1 class="magic-title">✨ 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈  ✨</h1>
+
+<p class="description">
+Selamat datang di halaman unlock premium.
+Selesaikan seluruh langkah verifikasi untuk membuka akses konten eksklusif.
+Pastikan semua tugas telah diselesaikan sebelum mengakses link yang tersedia.
+</p>
+
+<h2>✨ Premium Unlock Center ✨</h2><p>
 Selesaikan semua langkah berikut untuk membuka konten.
 </p><div class="step" id="step1">
 📢 Join WhatsApp Channel
@@ -96,6 +404,17 @@ Selesaikan semua langkah berikut untuk membuka konten.
 🎵 Follow TikTok
 </div><div class="step" id="step5">
 ☕ Support Sociabuzz
+</div>
+<div class="progress-box">
+  <div class="progress-title">🚀 Progress Unlock</div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="progress-text" id="progressText">
+    0/5 Langkah Selesai
+  </div>
 </div>
 <div id="unlockMenu" class="unlock-grid" style="display:none;">
   <button onclick="goLink(1)">🔓 Link 1</button>
@@ -112,7 +431,9 @@ Selesaikan semua langkah berikut untuk membuka konten.
 
 <div class="note">
 Selesaikan semua langkah terlebih dahulu.
-</div></div><script>
+</div></div>
+
+<script>
 
 const socialLinks = [
 "https://whatsapp.com/channel/0029Vb7aIVe2UPBK5qaTPP1V",
@@ -198,6 +519,14 @@ step.dataset.text + " ✅";
 
 current++;
 
+const selesai = current - 1;
+const persen = (selesai / 5) * 100;
+
+document.getElementById("progressFill").style.width = persen + "%";
+
+document.getElementById("progressText").innerHTML =
+`${selesai}/5 Langkah Selesai (${persen}%)`;
+
 if(current === 6){
 
 document.getElementById("unlockMenu").style.display = "block";
@@ -214,6 +543,13 @@ step.innerHTML =
 },1000);
 
 };
+
+}
+
+function startWebsite(){
+
+  document.getElementById("welcomeOverlay")
+  .style.display = "none";
 
 }
 
