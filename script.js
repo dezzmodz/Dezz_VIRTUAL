@@ -133,7 +133,7 @@ function startWebsite(){
 
 }
 
-const titleText = "✨ 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈 ✨";
+const titleText = "✨DezZXOFM✨";
 
 function typingEffect(){
   const el = document.getElementById("typingTitle");
@@ -158,3 +158,169 @@ function typingEffect(){
 window.addEventListener("load", () => {
   typingEffect();
 });
+const snowContainer = document.querySelector(".snow-container");
+
+for(let i = 0; i <50; i++){
+
+  const snow = document.createElement("div");
+
+  snow.classList.add("snowflake");
+  snow.innerHTML = " 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈 ";
+
+  snow.style.left = Math.random() * 100 + "%";
+  snow.style.fontSize = (Math.random() * 20 + 8) + "px";
+
+  snow.style.opacity = Math.random();
+
+  snow.style.animationDuration =
+    (Math.random() * 8 + 5) + "s";
+
+  snow.style.animationDelay =
+    (Math.random() * 10) + "s";
+
+  snowContainer.appendChild(snow);
+}
+// FPS COUNTER STABIL
+
+const fpsBox = document.createElement("div");
+
+fpsBox.style.position = "fixed";
+fpsBox.style.top = "10px";
+fpsBox.style.right = "10px";
+fpsBox.style.padding = "8px 12px";
+fpsBox.style.background = "rgba(0,0,0,.0)";
+fpsBox.style.color = "#00ff66";
+fpsBox.style.borderRadius = "10px";
+fpsBox.style.zIndex = "999999";
+
+document.body.appendChild(fpsBox);
+
+let frames = 0;
+let lastTime = performance.now();
+
+function loop(now){
+
+  frames++;
+
+  if(now - lastTime >= 1000){
+
+    const fps = Math.round(
+      frames * 1000 / (now - lastTime)
+    );
+
+    fpsBox.innerHTML =
+      `⚡ FPS: ${fps}`;
+
+    frames = 0;
+    lastTime = now;
+  }
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+
+const batteryBox = document.createElement("div");
+
+batteryBox.style.position = "fixed";
+batteryBox.style.top = "35px";
+batteryBox.style.right = "10px";
+batteryBox.style.color = "#00ff66";
+batteryBox.style.fontSize = "13px";
+batteryBox.style.zIndex = "999999";
+
+document.body.appendChild(batteryBox);
+
+if ('getBattery' in navigator) {
+
+  navigator.getBattery().then(function(battery){
+
+    function updateBattery(){
+
+      const level =
+      Math.round(battery.level * 100);
+
+      const charging =
+      battery.charging ? "⚡" : "🔋";
+
+      batteryBox.innerHTML =
+      `${charging} ${level}%`;
+    }
+
+    updateBattery();
+
+    battery.addEventListener(
+      "levelchange",
+      updateBattery
+    );
+
+    battery.addEventListener(
+      "chargingchange",
+      updateBattery
+    );
+
+  });
+
+}else{
+
+  batteryBox.innerHTML =
+  "🔋 N/A";
+}
+const clock = document.createElement("div");
+document.body.appendChild(clock);
+
+clock.style.position = "fixed";
+clock.style.top = "60px";
+clock.style.right = "10px";
+clock.style.color = "#00e5ff";
+clock.style.fontSize = "13px";
+clock.style.zIndex = "999999";
+setInterval(() => {
+  const now = new Date();
+  clock.innerHTML = `🕒 ${now.toLocaleTimeString()}`;
+}, 1000);
+const net = document.createElement("div");
+document.body.appendChild(net);
+
+net.style.position = "fixed";
+net.style.bottom = "10px";
+net.style.right = "10px";
+net.style.fontSize = "13px";
+net.style.zIndex = "999999";
+
+function updateNet(){
+  net.innerHTML = navigator.onLine ? "🟢 Online" : "🔴 Offline";
+  net.style.color = navigator.onLine ? "#00ff66" : "#ff4444";
+}
+
+window.addEventListener("online", updateNet);
+window.addEventListener("offline", updateNet);
+updateNet();
+const device = document.createElement("div");
+document.body.appendChild(device);
+
+device.style.position = "fixed";
+device.style.bottom = "35px";
+device.style.right = "10px";
+device.style.color = "#cbd5e1";
+device.style.fontSize = "12px";
+device.style.zIndex = "999999";
+
+device.innerHTML = `
+📱 ${navigator.platform}<br>
+🌐 ${navigator.userAgent.includes("Android") ? "Android" : "Desktop"}
+`;
+const ramBox = document.createElement("div");
+document.body.appendChild(ramBox);
+
+ramBox.style.position = "fixed";
+ramBox.style.bottom = "10px";
+ramBox.style.left = "10px";
+ramBox.style.color = "#00e5ff";
+ramBox.style.fontSize = "13px";
+ramBox.style.zIndex = "999999";
+
+const ram = navigator.deviceMemory;
+
+ramBox.innerHTML =
+ram ? `🧠 RAM ~ ${ram}GB` : `🧠 RAM: Unknown`;
