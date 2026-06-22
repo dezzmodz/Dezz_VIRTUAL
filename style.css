@@ -348,3 +348,9 @@ p{
   #00e5ff,
   #7c3aed);
 }
+.footer-premium{
+  text-align:center;
+  margin-top:20px;
+  color:#94a3b8;
+  font-size:13px;
+}
