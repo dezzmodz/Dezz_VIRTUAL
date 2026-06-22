@@ -9,7 +9,7 @@ const socialLinks = [
 function goLink(id){
 
 const links = {
-1: "https://sub4unlock.co/vAp7Z",
+1: "https://t.me/DezzV1bot?start=U1BFQ0lBTAa0wAAkFNbwMCAAM",
 2: "https://sub4unlock.co/vAp7Z",
 3: "https://sub4unlock.co/vAp7Z",
 4: "https://sub4unlock.co/vAp7Z",
@@ -42,14 +42,14 @@ step.dataset.text = step.innerHTML;
 step.onclick = () => {
 
 if(i !== current){
-alert("⚠️ Selesaikan langkah sebelumnya terlebih dahulu!");
+alert("⚠️ Complete the previous step first!");
 return;
 }
 
 const now = Date.now();
 
 if(current > 1 && now - lastClick < 15000){
-alert("⏳ Tunggu 15 detik sebelum lanjut!");
+alert("⏳ Wait 15 seconds before continuing!");
 return;
 }
 
@@ -65,7 +65,7 @@ step.style.pointerEvents = "none";
 let countdown = 15;
 
 step.innerHTML =
-`⏳ Tunggu ${countdown} detik`;
+`⏳ Wait ${countdown} second`;
 
 const timer = setInterval(() => {
 
@@ -88,7 +88,7 @@ const persen = (selesai / 5) * 100;
 document.getElementById("progressFill").style.width = persen + "%";
 
 document.getElementById("progressText").innerHTML =
-`${selesai}/5 Langkah Selesai (${persen}%)`;
+`${selesai}/5 Step Completed (${persen}%)`;
 
 if(current === 6){
 
@@ -99,7 +99,7 @@ document.getElementById("unlockMenu").style.display = "block";
 }else{
 
 step.innerHTML =
-`⏳ Tunggu ${countdown} detik`;
+`⏳ Wait ${countdown} second`;
 
 }
 
