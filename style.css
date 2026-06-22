@@ -24,16 +24,118 @@ body{
   overflow-x:hidden;
 }
 
+/* CONTAINER */
+
 .container{
-  background:rgba(255,255,255,.05);
+  width:95%;
+  max-width:450px;
+
+  padding:25px;
+  margin:auto;
+
+  border-radius:25px;
+
+  background:rgba(15,23,42,.65);
   backdrop-filter:blur(25px);
+
   border:1px solid rgba(255,255,255,.1);
+
+  box-shadow:
+  0 0 20px rgba(0,229,255,.15),
+  0 0 40px rgba(124,58,237,.15);
 }
+
+/* VERSION */
+
+.version-badge{
+  text-align:center;
+  margin-bottom:15px;
+
+  padding:8px;
+
+  border-radius:50px;
+
+  background:
+  linear-gradient(
+  90deg,
+  #00e5ff,
+  #7c3aed);
+
+  font-weight:bold;
+}
+
+/* PROFILE */
+
+.profile{
+  display:flex;
+  justify-content:center;
+  margin-bottom:15px;
+}
+
+.profile img{
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+  object-fit:cover;
+
+  border:3px solid #00e5ff;
+
+  box-shadow:
+  0 0 20px #00e5ff,
+  0 0 40px #00e5ff55;
+
+  animation:floatProfile 3s ease-in-out infinite;
+}
+
+@keyframes floatProfile{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+}
+
+/* STATUS */
+
+.status-online{
+  text-align:center;
+  margin-bottom:15px;
+
+  color:#00ff66;
+  font-weight:bold;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+
+  border-radius:50%;
+  background:#00ff66;
+
+  display:inline-block;
+
+  box-shadow:
+  0 0 10px #00ff66,
+  0 0 20px #00ff66;
+
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{
+    opacity:.3;
+  }
+}
+
+/* TITLE */
 
 .magic-title{
   text-align:center;
 
-  font-size:34px;
+  font-size:30px;
   font-weight:800;
 
   margin-bottom:10px;
@@ -57,16 +159,37 @@ body{
   font-size:14px;
 }
 
-h2{
-  text-align:center;
-  margin-bottom:10px;
+/* STATS */
 
-  color:#ffffff;
+.stats-box{
+  display:flex;
+  gap:8px;
+  margin:20px 0;
 }
 
-p{
+.stats-box div{
+  flex:1;
+
+  text-align:center;
+
+  padding:12px;
+
+  background:#111827;
+
+  border-radius:15px;
+}
+
+.stats-box h3{
+  color:#00e5ff;
+  margin-bottom:5px;
+}
+
+.stats-box span{
+  font-size:12px;
   color:#cbd5e1;
 }
+
+/* STEPS */
 
 .step{
   margin:12px 0;
@@ -100,48 +223,7 @@ p{
   border-left:none;
 }
 
-.unlock-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-
-  margin-top:15px;
-}
-
-.unlock-grid button{
-  box-shadow:
-  0 0 15px #00e5ff55;
-}
-
-.unlock-grid button:hover{
-  transform:translateY(-5px);
-  box-shadow:
-  0 0 25px #00e5ff,
-  0 0 35px #ff0088;
-}
-
-.note{
-  margin-top:15px;
-
-  text-align:center;
-
-  color:#94a3b8;
-
-  font-size:13px;
-}
-
-/* scrollbar */
-
-::-webkit-scrollbar{
-  width:5px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:#00e5ff;
-  border-radius:10px;
-}
-
-/* overlay verifikasi */
+/* PROGRESS */
 
 .progress-box{
   margin-bottom:20px;
@@ -179,7 +261,8 @@ p{
 
   transition:.5s;
 
-  background:linear-gradient(
+  background:
+  linear-gradient(
   90deg,
   #00e5ff,
   #a855f7);
@@ -187,11 +270,67 @@ p{
 
 .progress-text{
   margin-top:10px;
+
   text-align:center;
+
   color:#cbd5e1;
 }
 
-/*OVERLAY WELELCOM*/
+/* UNLOCK BUTTONS */
+
+.unlock-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:10px;
+
+  margin-top:15px;
+}
+
+.unlock-grid button{
+  padding:12px;
+
+  border:none;
+  border-radius:12px;
+
+  color:white;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff0088,
+  #00e5ff);
+
+  transition:.3s;
+
+  box-shadow:
+  0 0 15px #00e5ff55;
+}
+
+.unlock-grid button:hover{
+  transform:translateY(-5px);
+
+  box-shadow:
+  0 0 25px #00e5ff,
+  0 0 35px #ff0088;
+}
+
+/* FOOTER */
+
+.footer-premium{
+  text-align:center;
+  margin-top:20px;
+
+  color:#94a3b8;
+
+  font-size:13px;
+}
+
+/* WELCOME */
+
 #welcomeOverlay{
   position:fixed;
   inset:0;
@@ -267,80 +406,235 @@ p{
   #00e5ff,
   #7c3aed);
 }
-.footer-premium{
-  text-align:center;
-  margin-top:20px;
-  color:#94a3b8;
-  font-size:13px;
-}
-#particles{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:
-  radial-gradient(circle,#00e5ff22 1px,transparent 1px);
-  background-size:30px 30px;
 
-  animation:moveBg 20s linear infinite;
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:5px;
 }
 
-@keyframes moveBg{
+::-webkit-scrollbar-thumb{
+  background:#00e5ff;
+  border-radius:10px;
+}
+.snowflake{
+  position:absolute;
+  top:-50px;
+  color:white;
+  user-select:none;
+  animation:snowFall linear infinite;
+}
+
+@keyframes snowFall{
   from{
-    background-position:0 0;
+    transform:translateY(-50px) rotate(0deg);
   }
   to{
-    background-position:0 1000px;
+    transform:translateY(110vh) rotate(360deg);
   }
 }
-
-#particles-js{
+.snow-container{
   position:fixed;
-  inset:0;
-  z-index:-1;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none; /* supaya tombol masih bisa diklik */
+  z-index:99999;
+  overflow:hidden;
 }
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#00ff66;
-  display:inline-block;
+/* ULTRA PREMIUM EFFECT */
 
-  animation:blink 1s infinite;
+.container{
+  animation:floatCard 5s ease-in-out infinite;
 }
 
-@keyframes blink{
+@keyframes floatCard{
+  0%,100%{
+    transform:translateY(0);
+  }
   50%{
-    opacity:.3;
+    transform:translateY(-8px);
   }
 }
-.stats-box{
-  display:flex;
-  gap:10px;
-  margin:20px 0;
+
+/* BORDER GLOW BERGERAK */
+
+.container::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:30px;
+
+  background:linear-gradient(
+  45deg,
+  #00e5ff,
+  #ff0088,
+  #7c3aed,
+  #00e5ff);
+
+  background-size:400% 400%;
+
+  z-index:-1;
+
+  animation:borderMove 6s linear infinite;
 }
 
-.stats-box div{
-  flex:1;
-  text-align:center;
-  padding:12px;
-
-  background:#111827;
-  border-radius:15px;
+@keyframes borderMove{
+  0%{
+    background-position:0% 50%;
+  }
+  100%{
+    background-position:400% 50%;
+  }
 }
-.version-badge{
-  text-align:center;
-  margin-bottom:15px;
 
-  padding:8px;
+/* PROFILE GLOW */
 
-  border-radius:50px;
+.profile img{
+  animation:
+  floatProfile 3s ease-in-out infinite,
+  pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{
+    box-shadow:
+    0 0 20px #00e5ff,
+    0 0 40px #00e5ff55;
+  }
+
+  50%{
+    box-shadow:
+    0 0 35px #00e5ff,
+    0 0 60px #ff0088;
+  }
+}
+
+/* TITLE RGB */
+
+.magic-title{
+  animation:rgbTitle 5s linear infinite;
+}
+
+@keyframes rgbTitle{
+  0%{
+    text-shadow:
+    0 0 10px #00e5ff;
+  }
+
+  50%{
+    text-shadow:
+    0 0 15px #ff0088;
+  }
+
+  100%{
+    text-shadow:
+    0 0 10px #00ff66;
+  }
+}
+
+/* STEP SHINE */
+
+.step{
+  position:relative;
+  overflow:hidden;
+}
+
+.step::before{
+  content:"";
+  position:absolute;
+
+  top:0;
+  left:-120%;
+
+  width:60%;
+  height:100%;
 
   background:
   linear-gradient(
-    90deg,
-    #00e5ff,
-    #7c3aed
-  );
+  90deg,
+  transparent,
+  rgba(255,255,255,.25),
+  transparent);
 
-  font-weight:bold;
+  transition:.6s;
+}
+
+.step:hover::before{
+  left:150%;
+}
+
+/* BUTTON RGB */
+
+.unlock-grid button{
+  background-size:300% 300%;
+
+  animation:rgbBtn 4s linear infinite;
+}
+
+@keyframes rgbBtn{
+  0%{
+    background-position:0% 50%;
+  }
+  100%{
+    background-position:300% 50%;
+  }
+}
+
+/* STATUS ONLINE */
+
+.dot{
+  animation:
+  blink 1s infinite,
+  pulseOnline 1.5s infinite;
+}
+
+@keyframes pulseOnline{
+  0%,100%{
+    box-shadow:
+    0 0 10px #00ff66;
+  }
+
+  50%{
+    box-shadow:
+    0 0 25px #00ff66,
+    0 0 45px #00ff66;
+  }
+}
+
+/* GLASS EFFECT */
+
+.welcome-box,
+.progress-box,
+.stats-box div{
+  backdrop-filter:blur(25px);
+}
+
+/* SNOW LEBIH KEREN */
+
+.snowflake{
+  position:fixed;
+  top:-20px;
+  color:white;
+  pointer-events:none;
+
+  text-shadow:
+  0 0 10px white;
+
+  animation:snowFall linear infinite;
+}
+
+@keyframes snowFall{
+  0%{
+    transform:
+    translateY(-50px)
+    rotate(0deg);
+  }
+
+  100%{
+    transform:
+    translateY(120vh)
+    rotate(360deg);
+  }
 }
