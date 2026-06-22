@@ -21,13 +21,16 @@ const links = {
 10: "https://sub4unlock.co/vAp7Z"
 };
 
+if(!links[id]){
+  alert("Link not available");
+  return;
+}
+
 window.open(links[id], "_blank", "noopener,noreferrer");
 
-// refresh halaman ini setelah 0,1 detik
 setTimeout(() => {
   location.reload();
 }, 100);
-
 }
 
 let current = 1;
@@ -65,7 +68,7 @@ step.style.pointerEvents = "none";
 let countdown = 15;
 
 step.innerHTML =
-`⏳ Wait ${countdown} second`;
+`⏳ Please wait ${countdown}s`;
 
 const timer = setInterval(() => {
 
@@ -82,13 +85,24 @@ step.dataset.text + " ✅";
 
 current++;
 
+if(current === 6){
+
+document.getElementById("unlockMenu").style.display = "block";
+
+confetti({
+  particleCount:150,
+  spread:120
+});
+
+}
+
 const selesai = current - 1;
 const persen = (selesai / 5) * 100;
 
 document.getElementById("progressFill").style.width = persen + "%";
 
 document.getElementById("progressText").innerHTML =
-`${selesai}/5 Step Completed (${persen}%)`;
+`${selesai}/5 Steps Completed (${persen}%)`;
 
 if(current === 6){
 
@@ -99,7 +113,7 @@ document.getElementById("unlockMenu").style.display = "block";
 }else{
 
 step.innerHTML =
-`⏳ Wait ${countdown} second`;
+`⏳ Please wait ${countdown}s`;
 
 }
 
@@ -115,3 +129,29 @@ function startWebsite(){
   .style.display = "none";
 
 }
+
+const titleText = "✨ DezZ OFM Premium Center ✨";
+
+function typingEffect(){
+  const el = document.getElementById("typingTitle");
+
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  let i = 0;
+
+  function type(){
+    if(i < titleText.length){
+      el.innerHTML += titleText.charAt(i);
+      i++;
+      setTimeout(type,80);
+    }
+  }
+
+  type();
+}
+
+window.addEventListener("load", () => {
+  typingEffect();
+});
