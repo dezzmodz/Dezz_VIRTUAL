@@ -130,7 +130,7 @@ function startWebsite(){
 
 }
 
-const titleText = "✨ DezZ OFM Premium Center ✨";
+const titleText = "✨ 𝘿𝙚𝙯𝙕✘𝙊𝙁𝙈 ✨";
 
 function typingEffect(){
   const el = document.getElementById("typingTitle");
