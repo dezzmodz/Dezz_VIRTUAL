@@ -20,7 +20,7 @@ function getThumbnail(){
   }
 
   const thumbUrl =
-  `https://img.youtube.com/vi/${videoId}/dezzofm.jpg`;
+  `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   const img = document.getElementById("thumbnail");
   img.src = thumbUrl;
