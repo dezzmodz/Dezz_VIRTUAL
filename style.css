@@ -1024,3 +1024,31 @@ opacity:1;
 transform:translateY(0);
 }
 }
+.login-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  color:white;
+  font-weight:bold;
+  margin-bottom:10px;
+
+  background:linear-gradient(
+    135deg,
+    #4285F4,
+    #34A853
+  );
+}
+
+#userInfo{
+  text-align:center;
+  margin:10px 0;
+  color:#00ff66;
+  font-weight:bold;
+}
+
+#startBtn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
