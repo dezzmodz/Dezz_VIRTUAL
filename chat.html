@@ -7,25 +7,29 @@
 </head>
 <body>
 
+<script>
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
+
 <div class="container">
 
-<h1>💬 Live Chat</h1>
+  <h1>&#128172; Live Chat</h1>
 
-<input
-id="username"
-placeholder="Nama Kamu"
->
+  <div id="messages"></div>
 
-<input
-id="message"
-placeholder="Tulis pendapat..."
->
+  <input id="username" placeholder="&#128100; Your name">
 
-<button onclick="sendMessage()">
-📤 Kirim
+  <input id="message" placeholder="&#9997; Write an opinion...">
+
+  <button onclick="sendMessage()">
+  &#128228; Send Message
 </button>
 
-<div id="messages"></div>
+  <button class="back-btn" onclick="goHome()">
+  &#128281; Back To Home
+</button>
 
 </div>
 
