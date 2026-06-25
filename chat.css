@@ -142,3 +142,9 @@ margin-top:5px;
   color:#ffd700;
   margin-bottom:8px;
 }
+#message{
+  flex:1;
+  min-height:45px;
+  max-height:120px;
+  resize:none;
+}

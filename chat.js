@@ -78,165 +78,105 @@ window.sendMessage = async function () {
 };
 
 
-/* ================= PINNED ================= */
+/* ================= PINNED MESSAGE ================= */
+onSnapshot(doc(db, "settings", "pinned"), (snap) => {
 
-onSnapshot(
-doc(db,"settings","pinned"),
-(snap)=>{
+  const pinBox = document.getElementById("pinnedMessage");
+  if (!pinBox) return;
 
-const pinBox =
-  document.getElementById("pinnedMessage");
-
-if(!pinBox) return;
-
-if(!snap.exists()){
-  pinBox.innerHTML = "";
-  return;
-}
-
-const pins = snap.data().pins || [];
-
-pinBox.innerHTML =
-  `<div class="pin-title">📌 Pesan Disematkan</div>` +
-  pins.map(
-    (text,index)=>`
-      <div class="pin-item">
-        📌 ${index + 1}. ${text}
-      </div>
-    `
-  ).join("");
-
-}
-);
-
-/* ================= REALTIME CHAT ================= */
-
-const q = query(
-collection(db,"messages"),
-orderBy("time")
-);
-
-onSnapshot(q,(snapshot)=>{
-
-const box =
-document.getElementById("messages");
-
-if(!box) return;
-
-box.innerHTML = "";
-
-snapshot.forEach((docSnap)=>{
-
-const data = docSnap.data();
-
-const waktu =
-  data.time?.toDate
-  ? data.time.toDate()
-  : new Date();
-
-let textWithLinks =
-  data.message || "";
-
-textWithLinks = textWithLinks.replace(
-  /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g,
-  (url)=>{
-
-    let link = url;
-
-    if(!url.startsWith("http")){
-      link = "https://" + url;
-    }
-
-    return `
-      <a href="${link}"
-         target="_blank"
-         style="
-           color:#4ea3ff;
-           text-decoration:underline;
-         ">
-         ${url}
-      </a>
-    `;
+  if (!snap.exists()) {
+    pinBox.innerHTML = "📌 Belum ada pesan disematkan";
+    return;
   }
-);
 
-box.innerHTML += `
-  <div class="msg">
+  const pins = snap.data().pins || [];
 
-    <div class="bubble">
-
-      <b>${data.name}</b>
-
-      <div>${textWithLinks}</div>
-
-      <small>
-        ${waktu.toLocaleTimeString("id-ID")}
-      </small>
-
-      <div style="
-        margin-top:8px;
-        display:flex;
-        gap:8px;
-      ">
-
-        <button onclick="copyMessage(\`${data.message.replace(/`/g,"\\`")}\`)">
-          📋 Salin
-        </button>
-
-        <button onclick='pinMessage(${JSON.stringify(data.message)})'>
-          📌 Semat
-        </button>
-
-      </div>
-
+  pinBox.innerHTML = pins.map((pin, i) => `
+    <div class="pin-item">
+      <b>📌 ${i + 1}. ${pin.name}</b>
+      <div>${pin.message}</div>
     </div>
-
-  </div>
-`;
+  `).join("");
 
 });
 
-});
+/* ================= CHAT REALTIME ================= */
+const q = query(collection(db, "messages"), orderBy("time"));
 
-window.copyMessage = function(text){
+onSnapshot(q, (snapshot) => {
 
-  navigator.clipboard.writeText(text);
+  const box = document.getElementById("messages");
+  if (!box) return;
 
-  alert(" Pesan disalin");
-};
+  box.innerHTML = "";
 
-window.pinMessage = async function(text){
+  snapshot.forEach((docSnap) => {
 
-  try{
+    const data = docSnap.data();
 
-    const pinRef = doc(db,"settings","pinned");
+    const waktu = data.time?.toDate ? data.time.toDate() : new Date();
 
-    const snap = await getDoc(pinRef);
-
-    let pins = [];
-
-    if(snap.exists()){
-      pins = snap.data().pins || [];
-    }
-
-    pins.push(text);
-
-    // Maksimal 3 pin
-    if(pins.length > 3){
-      pins.shift(); // hapus paling lama
-    }
-
-    await setDoc(
-      pinRef,
-      { pins }
+    let textWithLinks = (data.message || "").replace(
+      /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g,
+      (url) => {
+        let link = url.startsWith("http") ? url : "https://" + url;
+        return `<a href="${link}" target="_blank" style="color:#4ea3ff;text-decoration:underline;">${url}</a>`;
+      }
     );
 
-    alert(" Pesan disematkan");
+    box.innerHTML += `
+      <div class="msg">
+        <div class="bubble">
 
-  }catch(err){
+          <b>${data.name}</b>
 
+          <div>${textWithLinks}</div>
+
+          <small>
+            ${waktu.toLocaleDateString("id-ID")} -
+            ${waktu.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"})}
+          </small>
+
+          <button onclick="copyMessage(\`${data.message.replace(/`/g,"\\`")}\`)">
+            📋 Salin
+          </button>
+
+          <button onclick='pinMessage(${JSON.stringify(data.name)},${JSON.stringify(data.message)})'>
+            📌 Semat
+          </button>
+
+        </div>
+      </div>
+    `;
+  });
+});
+
+/* ================= PIN MESSAGE (MAX 3 AUTO SHIFT) ================= */
+window.pinMessage = async function (name, message) {
+
+  try {
+
+    const pinRef = doc(db, "settings", "pinned");
+    const snap = await getDoc(pinRef);
+
+    let pins = snap.exists() ? (snap.data().pins || []) : [];
+
+    pins.push({ name, message });
+
+    if (pins.length > 3) {
+      pins.shift(); // auto hapus paling lama
+    }
+
+    await setDoc(pinRef, { pins });
+
+  } catch (err) {
     console.log(err);
     alert("Gagal menyematkan");
-
   }
+};
+
+/* ================= COPY MESSAGE ================= */
+window.copyMessage = function (text) {
+  navigator.clipboard.writeText(text);
+  alert("📋 Pesan disalin");
 };

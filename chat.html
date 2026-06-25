@@ -8,32 +8,44 @@
 
 <body>
 
-<div class="telegram-chat">  <div class="topbar"><button onclick="goHome()">←</button>
+<div class="telegram-chat">
 
-<div>
-  <h3>💬 Live Chat</h3>
-  <small>Online</small>
+  <div class="topbar">
+
+    <button onclick="goHome()">←</button>
+
+    <div>
+      <h3>💬 Live Chat</h3>
+      <small>Online</small>
+    </div>
+
+  </div>
+
+  <div id="pinnedMessage">
+    <div class="pin-title">📌 Pesan Disematkan</div>
+  </div>
+
+  <div id="messages" class="messages"></div>
+
+  <div class="input-area">
+
+    <input
+      id="username"
+      placeholder="👤 Nama"
+    >
+
+    <textarea
+      id="message"
+      placeholder="✍️ Tulis pesan..."
+    ></textarea>
+
+    <button onclick="sendMessage()">
+      ➤
+    </button>
+
+  </div>
+
 </div>
-
- <div id="pinnedMessage">
-  <div class="pin-title">📌 Pesan Disematkan</div>
-</div>
- 
-  </div>  <div id="messages" class="messages"></div>  <div class="input-area"><input
-  id="username"
-  placeholder="👤 Nama"
->
-
-<input
-  id="message"
-  placeholder="✍️ Tulis pesan..."
->
-
-<button onclick="sendMessage()">
-  ➤
-</button>
-
-  </div></div>
 
 <script>
 function goHome(){
