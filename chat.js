@@ -120,7 +120,7 @@ onSnapshot(q, (snapshot) => {
       /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g,
       (url) => {
         let link = url.startsWith("http") ? url : "https://" + url;
-        return `<a href="${link}" target="_blank" style="color:#4ea3ff;text-decoration:underline;">${url}</a>`;
+        return `<a href="${link}" target="_blank" style="color:#0068FF;text-decoration:underline;">${url}</a>`;
       }
     );
 
