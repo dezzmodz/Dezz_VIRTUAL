@@ -115,7 +115,7 @@ onSnapshot(q, (snapshot) => {
     const data = docSnap.data();
 
     const waktu = data.time?.toDate ? data.time.toDate() : new Date();
-
+    
     let textWithLinks = (data.message || "").replace(
       /(https?:\/\/[^\s]+|www\.[^\s]+|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})/g,
       (url) => {
@@ -125,29 +125,31 @@ onSnapshot(q, (snapshot) => {
     );
 
     box.innerHTML += `
-      <div class="msg">
-        <div class="bubble">
+  <div class="msg">
 
-          <b>${data.name}</b>
+    <div class="bubble">
 
-          <div>${textWithLinks}</div>
+      <b>${data.name}</b>
 
-          <small>
-            ${waktu.toLocaleDateString("id-ID")} -
-            ${waktu.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"})}
-          </small>
+      <div>${textWithLinks}</div>
 
-          <button onclick="copyMessage(\`${data.message.replace(/`/g,"\\`")}\`)">
-            📋 Salin
-          </button>
+      <small>
+        ${waktu.toLocaleDateString("id-ID")} -
+        ${waktu.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"})}
+      </small>
 
-          <button onclick='pinMessage(${JSON.stringify(data.name)},${JSON.stringify(data.message)})'>
-            📌 Semat
-          </button>
+      <button onclick="copyMessage(\`${data.message.replace(/`/g,"\\`")}\`)">
+        📋 Salin
+      </button>
 
-        </div>
-      </div>
-    `;
+      <button onclick='pinMessage(${JSON.stringify(data.name)},${JSON.stringify(data.message)})'>
+        📌 Semat
+      </button>
+
+    </div>
+
+  </div>
+`;
   });
 });
 

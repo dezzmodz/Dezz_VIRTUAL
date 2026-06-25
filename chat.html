@@ -11,38 +11,27 @@
 <div class="telegram-chat">
 
   <div class="topbar">
-
     <button onclick="goHome()">←</button>
 
     <div>
       <h3>💬 Live Chat</h3>
       <small>Online</small>
     </div>
-
   </div>
 
+  <!-- PINNED -->
   <div id="pinnedMessage">
     <div class="pin-title">📌 Pesan Disematkan</div>
   </div>
 
+  <!-- CHAT -->
   <div id="messages" class="messages"></div>
 
+  <!-- INPUT -->
   <div class="input-area">
-
-    <input
-      id="username"
-      placeholder="👤 Nama"
-    >
-
-    <textarea
-      id="message"
-      placeholder="✍️ Tulis pesan..."
-    ></textarea>
-
-    <button onclick="sendMessage()">
-      ➤
-    </button>
-
+    <input id="username" placeholder="👤 Nama">
+    <input id="message" placeholder="✍️ Tulis pesan...">
+    <button onclick="sendMessage()">➤</button>
   </div>
 
 </div>
