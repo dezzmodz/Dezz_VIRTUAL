@@ -51,10 +51,10 @@ body{
   height:90px;
   border-radius:50%;
 
-  border:3px solid #00e5ff;
+  border:3px solid #FFFFFF;
 
   box-shadow:
-    0 0 20px #00e5ff;
+    0 0 20px #FFFFFF;
 }
 
 .thumbnail-header h1{
@@ -67,14 +67,14 @@ body{
 }
 
 .thumbnail-header p{
-  color:#94a3b8;
+  color:#FFFFFF;
   margin-top:5px;
 }
 
 /* INPUT */
 
 .thumbnail-container input{
-  width:100%;
+  width:85%;
   padding:14px;
 
   border:none;
@@ -82,7 +82,7 @@ body{
 
   border-radius:15px;
 
-  background:#111827;
+  background:#FFBB00;
   color:white;
 
   margin-bottom:12px;
