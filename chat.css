@@ -164,12 +164,22 @@ html,body{
 }
 
 .bubble{
-  max-width:75%;
-  background:#182533;
-  padding:10px 12px;
-  border-radius:16px;
-  word-break:break-word;
-  font-size:14px;
+max-width:85%;
+background:#182533;
+padding:14px 16px;
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 2px 8px rgba(0,0,0,.25);
+
+word-break:break-word;
+
+font-size:18px;
+line-height:1.5;
+
+margin-bottom:4px;
 }
 
 .bubble b{
@@ -223,4 +233,103 @@ html,body{
   max-height:80px;
   resize:none;
   font-size:13px;
+}
+/* =========================
+UKURAN NORMAL & ENAK DI MATA
+========================= */
+
+.topbar h3{
+font-size:22px;
+}
+
+.topbar small{
+font-size:15px;
+color:#8a9ba8;
+}
+
+.bubble{
+max-width:85%;
+background:#182533;
+padding:14px 16px;
+border-radius:16px;
+word-break:break-word;
+font-size:18px;
+}
+
+.bubble b{
+color:#2ea6ff;
+font-size:18px;
+}
+
+.bubble small{
+display:block;
+margin-top:6px;
+color:#9ca3af;
+font-size:14px;
+}
+
+#pinnedMessage{
+background:#1f2937;
+border-left:4px solid #ffd700;
+color:#fff;
+padding:12px;
+margin:8px;
+border-radius:10px;
+
+max-height:150px;
+overflow-y:auto;
+
+font-size:18px;
+}
+
+.pin-title{
+font-weight:bold;
+color:#ffd700;
+margin-bottom:8px;
+font-size:18px;
+}
+
+.pin-item{
+padding:8px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+word-break:break-word;
+font-size:17px;
+}
+
+.pin-item:last-child{
+border-bottom:none;
+}
+
+#username{
+width:120px;
+font-size:16px;
+}
+
+#message{
+flex:1;
+min-height:50px;
+max-height:120px;
+resize:none;
+font-size:17px;
+}
+
+#username,
+#message{
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#242f3d;
+color:white;
+}
+
+.input-area button{
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:#2ea6ff;
+color:white;
+font-size:20px;
+cursor:pointer;
 }
