@@ -397,13 +397,8 @@ minute:"2-digit"
 
 div.innerHTML = `
 <div class="bubble">
-
-${text}
-
-<span class="time">
-${jam}
-</span>
-
+    ${text}
+    <span class="time">${jam}</span>
 </div>
 `;
 
@@ -518,3 +513,8 @@ Pilih pengguna untuk mulai chat.
 </div>
 
 `;
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("spoiler")) {
+        e.target.classList.toggle("hidden");
+    }
+});
