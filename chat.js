@@ -81,7 +81,7 @@ document.getElementById("myName").innerHTML =
 myData.displayName || myData.username;
 
 document.getElementById("myPhoto").src =
-(myData.photo || "https://files.catbox.moe/7n2m2x.jpg") + "?t=" + Date.now();
+(myData.photo || "https://iili.io/C5r365x.th.jpg") + "?t=" + Date.now();
 
 
 }
@@ -118,7 +118,7 @@ div.innerHTML=
 
 `
 
-<img src="${user.photo||'https://i.imgur.com/7k12EPD.png'}">
+<img src="${user.photo||'https://iili.io/C5r365x.th.jpg'}">
 
 <div class="user-info">
 
@@ -248,7 +248,7 @@ document.getElementById("chatBio").innerHTML =
 user.bio || "Belum ada bio.";
 
 document.getElementById("chatPhoto").src =
-  (user.photo || "https://files.catbox.moe/7n2m2x.jpg") + "?t=" + Date.now();
+  (user.photo || "https://iili.io/C5r365x.th.jpg") + "?t=" + Date.now();
 
 await setDoc(
 

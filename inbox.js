@@ -56,7 +56,7 @@ function loadInbox(myUid) {
       };
 
       div.innerHTML = `
-        <img src="${u.photo || 'https://i.imgur.com/7k12EPD.png'}">
+        <img src="${u.photo || 'https://iili.io/C5r365x.th.jpg'}">
 
         <div class="chat-info">
           <b>${u.displayName || u.username}</b>

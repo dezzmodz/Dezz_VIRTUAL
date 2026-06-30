@@ -42,7 +42,7 @@ document.getElementById("photo").value=
 data.photo||"";
 
 document.getElementById("photoPreview").src=
-data.photo||"https://files.catbox.moe/7n2m2x.jpg";
+data.photo||"https://iili.io/C5r365x.th.jpg";
 
 });
 
