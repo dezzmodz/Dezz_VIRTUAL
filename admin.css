@@ -1,103 +1,456 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: #fff;
+/* =========================================
+   CYBER RESET
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* CONTAINER */
-.admin {
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
+body{
+    font-family:"Segoe UI",sans-serif;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,255,255,.08),transparent 35%),
+        radial-gradient(circle at 80% 0%,rgba(124,58,237,.12),transparent 35%),
+        radial-gradient(circle at 50% 100%,rgba(255,0,136,.08),transparent 45%),
+        linear-gradient(
+            180deg,
+            #020308,
+            #050714,
+            #090c16,
+            #020308);
+
+    background-size:100% 100%;
+    animation:bgMove 15s linear infinite;
+
+    min-height:100vh;
 }
 
-/* TITLE */
-h2 {
-  margin-top: 25px;
-  margin-bottom: 10px;
-  color: #25D366;
+/* =========================================
+   BACKGROUND ANIMATION
+========================================= */
+
+@keyframes bgMove{
+
+    0%{
+        filter:hue-rotate(0deg);
+    }
+
+    100%{
+        filter:hue-rotate(25deg);
+    }
+
 }
 
-/* STATS BOX */
-.admin > div:first-of-type {
-  background: #1c1c1c;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  line-height: 1.6;
+/* =========================================
+   ADMIN PANEL
+========================================= */
+
+.admin{
+
+    position:relative;
+
+    width:95%;
+    max-width:950px;
+
+    margin:45px auto;
+
+    padding:35px;
+
+    border-radius:26px;
+
+    border:2px solid rgba(0,229,255,.25);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(22,28,45,.92),
+            rgba(10,12,20,.94));
+
+    backdrop-filter:blur(22px);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 0 30px rgba(0,229,255,.18),
+        0 0 70px rgba(124,58,237,.15),
+        inset 0 0 30px rgba(255,255,255,.04);
+
+    animation:
+        panelFloat 6s ease-in-out infinite;
 }
 
-/* USER & ROOM LIST */
+/* =========================================
+   RGB BORDER
+========================================= */
+
+.admin::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00e5ff,
+            #00ff99,
+            #7c3aed,
+            #ff0088,
+            #00e5ff);
+
+    background-size:400%;
+
+    animation:borderRGB 6s linear infinite;
+
+    z-index:-2;
+}
+
+/* INNER PANEL */
+
+.admin::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15,18,30,.97),
+            rgba(8,10,18,.97));
+
+    z-index:-1;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes borderRGB{
+
+    from{
+        background-position:0%;
+    }
+
+    to{
+        background-position:400%;
+    }
+
+}
+
+@keyframes panelFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+}
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+h2{
+    margin:30px 0 18px;
+
+    font-size:28px;
+    font-weight:800;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 10px #00e5ff,
+        0 0 25px #7c3aed;
+}
+
+/* =========================================
+   STATS PANEL
+========================================= */
+
+.admin > div:first-of-type{
+
+    position:relative;
+
+    margin-bottom:28px;
+    padding:22px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(0,229,255,.18);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24,28,45,.95),
+            rgba(10,12,20,.95));
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,.18),
+        inset 0 0 20px rgba(255,255,255,.03);
+
+    line-height:1.8;
+}
+
+/* =========================================
+   USER & ROOM LIST
+========================================= */
+
 #userList,
-#roomList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+#roomList{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:16px;
 }
 
-/* CARD STYLE */
+/* =========================================
+   USER / ROOM PANEL
+========================================= */
+
 .user-card,
-.room-card {
-  background: #1c1c1c;
-  padding: 12px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: 0.2s;
+.room-card{
+
+    position:relative;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20,24,38,.95),
+            rgba(12,15,25,.95));
+
+    backdrop-filter:blur(20px);
+
+    overflow:hidden;
+
+    transition:.35s;
 }
+
+/* RGB LINE */
+
+.user-card::before,
+.room-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:4px;
+    height:100%;
+
+    background:linear-gradient(
+        #00e5ff,
+        #7c3aed,
+        #ff0088);
+
+}
+
+/* HOVER */
 
 .user-card:hover,
-.room-card:hover {
-  background: #222;
+.room-card:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.01);
+
+    border-color:#00e5ff;
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,.25),
+        0 0 45px rgba(124,58,237,.15);
+
 }
 
-/* USER NAME */
-.user-card b {
-  font-size: 15px;
+/* =========================================
+   USER NAME
+========================================= */
+
+.user-card b{
+
+    font-size:16px;
+    color:#fff;
+
+    text-shadow:0 0 10px #00e5ff;
+
 }
 
-/* STATUS TEXT */
-.user-card div {
-  font-size: 12px;
-  opacity: 0.8;
+/* =========================================
+   STATUS
+========================================= */
+
+.user-card div{
+
+    margin-top:5px;
+
+    color:#bfc7d9;
+
+    font-size:13px;
+
+    line-height:1.5;
+
 }
 
-/* BUTTONS */
-button {
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-left: 5px;
-  font-size: 12px;
+/* =========================================
+   BUTTON
+========================================= */
+
+button{
+
+    padding:10px 18px;
+
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:13px;
+    font-weight:700;
+
+    transition:.3s;
 }
 
-/* BAN BUTTON */
-button:nth-child(1) {
-  background: #ff9800;
-  color: #000;
+/* BAN */
+
+button:nth-child(1){
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb300,
+            #ff6d00);
+
+    color:#fff;
+
+    box-shadow:
+        0 0 18px rgba(255,179,0,.35);
+
 }
 
-/* DELETE BUTTON */
-button:nth-child(2) {
-  background: #ff3b3b;
-  color: white;
+button:nth-child(1):hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 30px #ff9800;
+
 }
 
-/* ROOM STYLE */
-.room-card {
-  font-size: 13px;
-  opacity: 0.9;
-}
-#roomModal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
+/* DELETE */
+
+button:nth-child(2){
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0055,
+            #ff3333);
+
+    color:#fff;
+
+    box-shadow:
+        0 0 18px rgba(255,0,85,.35);
+
 }
 
-#roomModal div {
-  color: white;
+button:nth-child(2):hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 30px #ff0055;
+
+}
+
+/* =========================================
+   ROOM CARD
+========================================= */
+
+.room-card{
+
+    color:#d7deec;
+
+    font-size:14px;
+
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+#roomModal{
+
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.85);
+
+    backdrop-filter:blur(15px);
+
+    z-index:99999;
+
+}
+
+#roomModal div{
+
+    width:92%;
+    max-width:420px;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    border:1px solid rgba(0,229,255,.25);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(25,28,45,.96),
+            rgba(10,12,20,.96));
+
+    color:#fff;
+
+    box-shadow:
+        0 0 30px rgba(0,229,255,.25),
+        0 0 60px rgba(124,58,237,.18);
+
 }

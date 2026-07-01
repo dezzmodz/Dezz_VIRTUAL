@@ -184,7 +184,7 @@ for(let i = 0; i <50; i++){
   const snow = document.createElement("div");
 
   snow.classList.add("snowflake");
-  snow.innerHTML = "♥︎";
+  snow.innerHTML = "㋡";
 
   snow.style.left = Math.random() * 100 + "%";
   snow.style.fontSize = (Math.random() * 20 + 8) + "px";
@@ -360,7 +360,7 @@ function openlogin(){
   document.body.style.opacity = "0";
 
   setTimeout(() => {
-    window.location.href = "login.html";
+    window.location.href = "chat.html";
   }, 400);
 
 }
